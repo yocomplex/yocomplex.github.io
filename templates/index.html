@@ -3,29 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Joshua Zamora</title>
+    <title>Joshua Zamora's Portfolio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{{ url_for('about') }}"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="{{ url_for('projects') }}"><i class="fas fa-briefcase"></i> Projects</a></li>
+            <li><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
     <div id="particles-js" class="hero">
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
         <div class="hero-content">
             <h1>Hello, my name is <span>Joshua Zamora</span></h1>
-            <h2 class="dynamic-text">Builder.</h2>
-            <button id="contact-button">Contact Me</button>
-            <a href="#" id="resume-button">View Resume</a>
+            <h2 class="typewrite" data-period="2000" data-type='[ "Builder.", "Software Engineer.", "Frontend Developer." ]'>
+                <span class="wrap"></span>
+            </h2>
+            <a href="#contact" class="button">Contact Me</a>
+            <a href="path/to/resume.pdf" target="_blank" class="button">View Resume</a>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <footer>
+        <p>&copy; 2024 Joshua Zamora</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/particles.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>

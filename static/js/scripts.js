@@ -33,15 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const texts = ['Software Engineer.'];
     let count = 0;
-    const dynamicText = document.querySelector('.dynamic-text');
+    const dynamicText = document.querySelector('.typewrite .wrap');
 
     setInterval(() => {
         dynamicText.textContent = texts[count];
         count = (count + 1) % texts.length;
     }, 2000);
-
-    const contactButton = document.getElementById('contact-button');
-    contactButton.addEventListener('click', () => {
-        window.location.href = '#contact';
-    });
 });
