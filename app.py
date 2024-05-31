@@ -49,4 +49,4 @@ def submit_contact():
     return jsonify(status='success', message='Thank you for your message!')
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
