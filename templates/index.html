@@ -13,7 +13,7 @@
             <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="{{ url_for('about') }}"><i class="fas fa-user"></i> About</a></li>
             <li><a href="{{ url_for('projects') }}"><i class="fas fa-briefcase"></i> Projects</a></li>
-            <li><a href="#contact" id="contact-link"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
     </nav>
     <div id="particles-js" class="hero">
@@ -28,6 +28,7 @@
     <footer>
         <p>&copy; 2024 Joshua Zamora</p>
     </footer>
+
     <script src="{{ url_for('static', filename='js/particles.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>

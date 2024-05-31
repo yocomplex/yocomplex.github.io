@@ -12,49 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
         count = (count + 1) % texts.length;
     }, 2000);
 
-    const contactButton = document.getElementById('contact-button');
-    const contactModal = document.getElementById('contact-modal');
-    const closeButton = document.querySelector('.close-button');
+    // Make particles follow mouse movement
+    document.addEventListener('mousemove', (event) => {
+        const particles = document.querySelector('#particles-js canvas');
+        const rect = particles.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
 
-    contactButton.addEventListener('click', () => {
-        contactModal.style.display = 'block';
-    });
-
-    closeButton.addEventListener('click', () => {
-        contactModal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target === contactModal) {
-            contactModal.style.display = 'none';
-        }
-    });
-
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        const formData = new FormData(this);
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            message: formData.get('message')
-        };
-
-        fetch('/submit_contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams(data).toString()
-        })
-        .then(response => response.json())
-        .then(result => {
-            document.getElementById('responseMessage').innerText = result.message;
-            this.reset();
-        })
-        .catch(error => {
-            document.getElementById('responseMessage').innerText = 'There was an error submitting your message. Please try again.';
-            console.error('Error:', error);
-        });
+        particles.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px)`;
     });
 });
