@@ -13,7 +13,7 @@
             <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="{{ url_for('about') }}"><i class="fas fa-user"></i> About</a></li>
             <li><a href="{{ url_for('projects') }}"><i class="fas fa-briefcase"></i> Projects</a></li>
-            <li><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="#" id="contact-link"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
     </nav>
     <div id="particles-js" class="hero">
@@ -22,13 +22,38 @@
             <h2 class="typewrite" data-period="2000" data-type='[ "Builder.", "Software Engineer.", "Frontend Developer." ]'>
                 <span class="wrap"></span>
             </h2>
-            <a href="#contact" class="button">Contact Me</a>
-            <a href="path/to/resume.pdf" target="_blank" class="button">View Resume</a>
+            <button class="button" id="contact-button">Contact Me</button>
+            <a href="https://docs.google.com/document/d/16HFBGOLwNDAVQIc8zpeeL6VdomntnqwmbwyTit7vrbE/edit?usp=sharing" target="_blank" class="button">View Resume</a>
         </div>
     </div>
     <footer>
         <p>&copy; 2024 Joshua Zamora</p>
     </footer>
+
+    <!-- Contact Form Modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h1>Contact Me</h1>
+            <form id="contactForm" method="POST" action="{{ url_for('submit_contact') }}">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+            <p id="responseMessage"></p>
+        </div>
+    </div>
+
     <script src="{{ url_for('static', filename='js/particles.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>

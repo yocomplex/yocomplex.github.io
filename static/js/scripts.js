@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Particles.js config loaded');
     });
 
-    const texts = ['Software Engineer.'];
+    const texts = ['Builder.', 'Software Engineer.', 'Frontend Developer.'];
     let count = 0;
     const dynamicText = document.querySelector('.typewrite .wrap');
 
@@ -39,4 +39,27 @@ document.addEventListener('DOMContentLoaded', () => {
         dynamicText.textContent = texts[count];
         count = (count + 1) % texts.length;
     }, 2000);
+
+    const contactButton = document.getElementById('contact-button');
+    const contactLink = document.getElementById('contact-link');
+    const contactModal = document.getElementById('contact-modal');
+    const closeButton = document.querySelector('.close-button');
+
+    const openModal = () => {
+        contactModal.style.display = 'block';
+    };
+
+    const closeModal = () => {
+        contactModal.style.display = 'none';
+    };
+
+    contactButton.addEventListener('click', openModal);
+    contactLink.addEventListener('click', openModal);
+    closeButton.addEventListener('click', closeModal);
+
+    window.addEventListener('click', (event) => {
+        if (event.target === contactModal) {
+            closeModal();
+        }
+    });
 });
