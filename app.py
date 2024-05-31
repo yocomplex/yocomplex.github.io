@@ -17,19 +17,22 @@ def projects():
             'name': 'Solar Paver Energy Monitoring App',
             'description': 'A real-time energy monitoring application developed to track the energy production of solar pavers.',
             'technologies': 'Python, Flask, HTML, CSS, JavaScript, Bootstrap',
-            'link': 'https://github.com/yocomplex/solar_paver_monitor'
+            'link': 'https://github.com/yocomplex/solar_paver_monitor',
+            'image': 'project1.jpg'
         },
         {
             'name': 'Mario Kart Simulation',
             'description': 'A sophisticated Mario Kart race simulation using C++ for performance analysis.',
             'technologies': 'C++, Data Structures, Algorithms',
-            'link': 'https://github.com/yocomplex/marioKartSimulation'
+            'link': 'https://github.com/yocomplex/marioKartSimulation',
+            'image': 'project2.png'
         },
         {
             'name': 'Scanner and Parser',
             'description': 'A scanner and parser for an esoteric programming language.',
             'technologies': 'C++, Compilers, OOP',
-            'link': 'https://github.com/yocomplex/scannerAndParser'
+            'link': 'https://github.com/yocomplex/scannerAndParser',
+            'image': 'project3.png'
         }
     ]
     return render_template('projects.html', projects=projects)
