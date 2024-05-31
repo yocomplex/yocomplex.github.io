@@ -1,19 +1,7 @@
 from flask import Flask, render_template, request, jsonify
-from flask_mail import Mail, Message
 import os
 
 app = Flask(__name__)
-
-# Configuration for Flask-Mail using Gmail's SMTP server
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = os.environ.get('jzam0310@gmail.com')  # Your Gmail address
-app.config['MAIL_PASSWORD'] = os.environ.get('Jem125m51&')  # Your Gmail password
-app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('jzam0310@gmail.com')  # Your Gmail address
-
-mail = Mail(app)
 
 @app.route('/')
 def home():
@@ -43,7 +31,7 @@ def projects():
         {
             'name': 'Scanner and Parser',
             'description': 'A scanner and parser for an esoteric programming language.',
-            'technologies': 'C++, Compilers, OOP',
+            'technologies': 'C++, Compilers, Object Oriented Programming',
             'link': 'https://github.com/yocomplex/scannerAndParser',
             'image': 'project3.png'
         }
@@ -61,13 +49,17 @@ def submit_contact():
     email = data.get('email')
     message = data.get('message')
 
-    # Send email
-    msg = Message('Contact Form Submission',
-                  recipients=[os.environ.get('jzam0310@gmail.com')])  # Replace with your Gmail address
-    msg.body = f'Name: {name}\nEmail: {email}\nMessage: {message}'
-    mail.send(msg)
+    # Save the message to a file
+    with open('messages.txt', 'a') as f:
+        f.write(f'Name: {name}\nEmail: {email}\nMessage: {message}\n{"-"*20}\n')
 
     return jsonify(status='success', message='Thank you for your message!')
+
+@app.route('/view_messages')
+def view_messages():
+    with open('messages.txt', 'r') as f:
+        messages = f.read()
+    return f'<pre>{messages}</pre>'
 
 if __name__ == '__main__':
     app.run(debug=True)
