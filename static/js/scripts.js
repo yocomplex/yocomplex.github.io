@@ -1,31 +1,3 @@
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    const formData = new FormData(this);
-    const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        message: formData.get('message')
-    };
-
-    fetch('/submit_contact', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(data).toString()
-    })
-    .then(response => response.json())
-    .then(result => {
-        document.getElementById('responseMessage').innerText = result.message;
-        this.reset();
-    })
-    .catch(error => {
-        document.getElementById('responseMessage').innerText = 'There was an error submitting your message. Please try again.';
-        console.error('Error:', error);
-    });
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     particlesJS.load('particles-js', 'static/js/particles.json', function() {
         console.log('Particles.js config loaded');
@@ -41,25 +13,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
 
     const contactButton = document.getElementById('contact-button');
-    const contactLink = document.getElementById('contact-link');
     const contactModal = document.getElementById('contact-modal');
     const closeButton = document.querySelector('.close-button');
 
-    const openModal = () => {
+    contactButton.addEventListener('click', () => {
         contactModal.style.display = 'block';
-    };
+    });
 
-    const closeModal = () => {
+    closeButton.addEventListener('click', () => {
         contactModal.style.display = 'none';
-    };
-
-    contactButton.addEventListener('click', openModal);
-    contactLink.addEventListener('click', openModal);
-    closeButton.addEventListener('click', closeModal);
+    });
 
     window.addEventListener('click', (event) => {
         if (event.target === contactModal) {
-            closeModal();
+            contactModal.style.display = 'none';
         }
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const formData = new FormData(this);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            message: formData.get('message')
+        };
+
+        fetch('/submit_contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(data).toString()
+        })
+        .then(response => response.json())
+        .then(result => {
+            document.getElementById('responseMessage').innerText = result.message;
+            this.reset();
+        })
+        .catch(error => {
+            document.getElementById('responseMessage').innerText = 'There was an error submitting your message. Please try again.';
+            console.error('Error:', error);
+        });
     });
 });
