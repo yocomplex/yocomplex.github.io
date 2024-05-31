@@ -129,9 +129,12 @@ nav ul li a:hover {
     margin-bottom: 10px;
 }
 
+.project-link-container {
+    margin-top: auto;
+}
+
 .project-card a {
     display: inline-block;
-    margin-top: 10px;
     padding: 10px 20px;
     background-color: #333;
     color: #fff;
@@ -238,4 +241,3 @@ footer {
     text-decoration: none;
     cursor: pointer;
 }
-
