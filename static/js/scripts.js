@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Particles.js config loaded');
     });
 
-    const texts = ['Builder.', 'Software Engineer.', 'Frontend Developer.'];
+    const texts = ['Software Engineer.'];
     let count = 0;
     const dynamicText = document.querySelector('.dynamic-text');
 
