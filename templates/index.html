@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joshua Zamora's Portfolio</title>
+    <title>Portfolio - Joshua Zamora</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="{{ url_for('about') }}"><i class="fas fa-user"></i> About</a></li>
-            <li><a href="{{ url_for('projects') }}"><i class="fas fa-briefcase"></i> Projects</a></li>
-            <li><a href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact</a></li>
-        </ul>
-    </nav>
-    <main>
-        <header>
-            <h1>Welcome to My Portfolio</h1>
-            <p>Hi, I'm Joshua Zamora, a Computer Science student at UNLV. Explore my projects and learn more about me.</p>
-        </header>
-    </main>
-    <footer>
-        <p>&copy; 2024 Joshua Zamora</p>
-    </footer>
+    <div id="particles-js" class="hero">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero-content">
+            <h1>Hello, my name is <span>Joshua Zamora</span></h1>
+            <h2 class="dynamic-text">Builder.</h2>
+            <button id="contact-button">Contact Me</button>
+            <a href="#" id="resume-button">View Resume</a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>

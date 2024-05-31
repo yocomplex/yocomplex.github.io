@@ -25,3 +25,23 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         console.error('Error:', error);
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    particlesJS.load('particles-js', 'static/js/particles.json', function() {
+        console.log('Particles.js config loaded');
+    });
+
+    const texts = ['Builder.', 'Software Engineer.', 'Frontend Developer.'];
+    let count = 0;
+    const dynamicText = document.querySelector('.dynamic-text');
+
+    setInterval(() => {
+        dynamicText.textContent = texts[count];
+        count = (count + 1) % texts.length;
+    }, 2000);
+
+    const contactButton = document.getElementById('contact-button');
+    contactButton.addEventListener('click', () => {
+        window.location.href = '#contact';
+    });
+});
