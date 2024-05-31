@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from flask_mail import Mail, Message
+import os
 
 app = Flask(__name__)
 
@@ -7,9 +8,10 @@ app = Flask(__name__)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'jzam0310@gmail.com'
-app.config['MAIL_PASSWORD'] = 'Jem125m51&'  
-app.config['MAIL_DEFAULT_SENDER'] = 'jzam0310@gmail.com'  
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = os.environ.get('jzam0310@gmail.com')  # Your Gmail address
+app.config['MAIL_PASSWORD'] = os.environ.get('Jem125m51&')  # Your Gmail password
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('jzam0310@gmail.com')  # Your Gmail address
 
 mail = Mail(app)
 
@@ -61,7 +63,7 @@ def submit_contact():
 
     # Send email
     msg = Message('Contact Form Submission',
-                  recipients=['jzam0310@gmail.com'])  # Replace with your email
+                  recipients=[os.environ.get('jzam0310@gmail.com')])  # Replace with your Gmail address
     msg.body = f'Name: {name}\nEmail: {email}\nMessage: {message}'
     mail.send(msg)
 
