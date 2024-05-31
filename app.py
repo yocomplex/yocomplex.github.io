@@ -1,6 +1,17 @@
 from flask import Flask, render_template, request, jsonify
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
+
+# Configuration for Flask-Mail using Gmail's SMTP server
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'jzam0310@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Jem125m51&'  
+app.config['MAIL_DEFAULT_SENDER'] = 'jzam0310@gmail.com'  
+
+mail = Mail(app)
 
 @app.route('/')
 def home():
@@ -18,7 +29,7 @@ def projects():
             'description': 'A real-time energy monitoring application developed to track the energy production of solar pavers.',
             'technologies': 'Python, Flask, HTML, CSS, JavaScript, Bootstrap',
             'link': 'https://github.com/yocomplex/solar_paver_monitor',
-            'image': 'project3.png'
+            'image': 'project1.jpg'
         },
         {
             'name': 'Mario Kart Simulation',
@@ -32,7 +43,7 @@ def projects():
             'description': 'A scanner and parser for an esoteric programming language.',
             'technologies': 'C++, Compilers, OOP',
             'link': 'https://github.com/yocomplex/scannerAndParser',
-            'image': 'project1.jpg'
+            'image': 'project3.png'
         }
     ]
     return render_template('projects.html', projects=projects)
@@ -44,8 +55,16 @@ def contact():
 @app.route('/submit_contact', methods=['POST'])
 def submit_contact():
     data = request.form
-    print(f"Received contact form submission: {data}")
-    # Here you would typically handle the form data, such as sending an email
+    name = data.get('name')
+    email = data.get('email')
+    message = data.get('message')
+
+    # Send email
+    msg = Message('Contact Form Submission',
+                  recipients=['jzam0310@gmail.com'])  # Replace with your email
+    msg.body = f'Name: {name}\nEmail: {email}\nMessage: {message}'
+    mail.send(msg)
+
     return jsonify(status='success', message='Thank you for your message!')
 
 if __name__ == '__main__':
