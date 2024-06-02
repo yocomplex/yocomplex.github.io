@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(this);
         const data = {
             'entry.786412705': formData.get('name'),
-            'entry.1433627596': formData.get('email'), 
-            'entry.1493723441': formData.get('message') 
+            'entry.1433627596': formData.get('email'),
+            'entry.1493723441': formData.get('message')
         };
 
         fetch('https://docs.google.com/forms/d/e/1FAIpQLSf1oGAqW84VysTW4zM7c0CmCmiVv3q2v5_at4jjT5TgoFR1lA/formResponse', {
@@ -30,8 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
             body: new URLSearchParams(data).toString()
         })
         .then(response => {
-            document.getElementById('responseMessage').innerText = 'Thank you for your message!';
-            this.reset();
+            if (response.ok) {
+                document.getElementById('responseMessage').innerText = 'Thank you for your message!';
+                this.reset();
+            } else {
+                throw new Error('Network response was not ok.');
+            }
         })
         .catch(error => {
             document.getElementById('responseMessage').innerText = 'There was an error submitting your message. Please try again.';
