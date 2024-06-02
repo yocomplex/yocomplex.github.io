@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'entry.1493723441': formData.get('message')
         };
 
-        fetch('https://docs.google.com/forms/d/e/1FAIpQLSf1oGAqW84VysTW4zM7c0CmCmiVv3q2v5_at4jjT5TgoFR1lA/formResponse', {
+        fetch('https://script.google.com/macros/s/AKfycbximt6eRgUE9iR-osQF-n77dwMJ6aCuEoBOxSDv1t3eWHPXB4JEjvWJteSMrWfz-uGePQ/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

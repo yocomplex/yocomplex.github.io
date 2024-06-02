@@ -19,7 +19,7 @@ def projects():
             'description': 'A real-time energy monitoring application developed to track the energy production of solar pavers.',
             'technologies': 'Python, Flask, HTML, CSS, JavaScript, Bootstrap',
             'link': 'https://github.com/yocomplex/solar_paver_monitor',
-            'image': 'project1.jpg'
+            'image': 'project3.png'
         },
         {
             'name': 'Mario Kart Simulation',
@@ -33,7 +33,7 @@ def projects():
             'description': 'A scanner and parser for an esoteric programming language.',
             'technologies': 'C++, Compilers, Object Oriented Programming',
             'link': 'https://github.com/yocomplex/scannerAndParser',
-            'image': 'project3.png'
+            'image': 'project1.jpg'
         }
     ]
     return render_template('projects.html', projects=projects)
