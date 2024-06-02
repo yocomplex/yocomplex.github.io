@@ -113,6 +113,7 @@ nav ul li a:hover {
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .project-card:hover {
@@ -140,7 +141,6 @@ nav ul li a:hover {
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s;
-    align-self: center;
 }
 
 .project-card a:hover {
@@ -203,11 +203,6 @@ footer {
     bottom: 0;
 }
 
-.about-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #1a3b5d;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+section {
+    margin-top: 60px;
 }
