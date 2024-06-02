@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'entry.1493723441': formData.get('message')
         };
 
-        fetch('https://script.google.com/macros/s/AKfycbximt6eRgUE9iR-osQF-n77dwMJ6aCuEoBOxSDv1t3eWHPXB4JEjvWJteSMrWfz-uGePQ/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbxBVuoN2gT-zqvtpVOI8VYT9cuF10FEKo_a0iiOsioIh0ojj4R3a_JzydtytM_RODAE/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -41,5 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('responseMessage').innerText = 'There was an error submitting your message. Please try again.';
             console.error('Error:', error);
         });
+    });
+
+    // Mouse move background effect
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', (e) => {
+        const { offsetX, offsetY } = e;
+        const { clientWidth, clientHeight } = hero;
+
+        const moveX = (offsetX / clientWidth) * 100;
+        const moveY = (offsetY / clientHeight) * 100;
+
+        hero.style.backgroundPosition = `${moveX}% ${moveY}%`;
     });
 });
