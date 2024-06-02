@@ -12,13 +12,30 @@ document.addEventListener('DOMContentLoaded', () => {
         count = (count + 1) % texts.length;
     }, 2000);
 
-    // Make particles follow mouse movement
-    document.addEventListener('mousemove', (event) => {
-        const particles = document.querySelector('#particles-js canvas');
-        const rect = particles.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
 
-        particles.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px)`;
+        const formData = new FormData(this);
+        const data = {
+            'entry.786412705': formData.get('name'),
+            'entry.1433627596': formData.get('email'), 
+            'entry.1493723441': formData.get('message') 
+        };
+
+        fetch('https://docs.google.com/forms/d/e/1FAIpQLSf1oGAqW84VysTW4zM7c0CmCmiVv3q2v5_at4jjT5TgoFR1lA/formResponse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(data).toString()
+        })
+        .then(response => {
+            document.getElementById('responseMessage').innerText = 'Thank you for your message!';
+            this.reset();
+        })
+        .catch(error => {
+            document.getElementById('responseMessage').innerText = 'There was an error submitting your message. Please try again.';
+            console.error('Error:', error);
+        });
     });
 });
