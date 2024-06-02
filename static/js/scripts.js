@@ -30,28 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
             body: new URLSearchParams(data).toString()
         })
         .then(response => {
-            if (response.ok) {
-                document.getElementById('responseMessage').innerText = 'Thank you for your message!';
-                this.reset();
-            } else {
-                throw new Error('Network response was not ok.');
-            }
+            document.getElementById('responseMessage').innerText = 'Thank you for your message!';
+            this.reset();
         })
         .catch(error => {
             document.getElementById('responseMessage').innerText = 'There was an error submitting your message. Please try again.';
             console.error('Error:', error);
         });
-    });
-
-    // Mouse move background effect
-    const hero = document.querySelector('.hero');
-    hero.addEventListener('mousemove', (e) => {
-        const { offsetX, offsetY } = e;
-        const { clientWidth, clientHeight } = hero;
-
-        const moveX = (offsetX / clientWidth) * 100;
-        const moveY = (offsetY / clientHeight) * 100;
-
-        hero.style.backgroundPosition = `${moveX}% ${moveY}%`;
     });
 });

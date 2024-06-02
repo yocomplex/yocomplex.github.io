@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - Joshua Zamora</title>
+    <title>My Projects - Joshua Zamora</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
@@ -19,9 +18,17 @@
     </nav>
     <main>
         <section>
-            <h1>About Me</h1>
-            <div class="about-container">
-                <p>Hi, I'm Joshua Zamora, a senior Computer Science student at UNLV with a passion for software development and data science. I have experience in various programming languages and tools, and I enjoy working on innovative projects that solve real-world problems.</p>
+            <h1>My Projects</h1>
+            <div class="projects-container">
+                {% for project in projects %}
+                <div class="project-card">
+                    <img src="{{ url_for('static', filename='img/' ~ project.image) }}" alt="{{ project.name }} Image" style="width:100%; border-radius: 10px;">
+                    <h2>{{ project.name }}</h2>
+                    <p>{{ project.description }}</p>
+                    <p><strong>Technologies:</strong> {{ project.technologies }}</p>
+                    <a href="{{ project.link }}" target="_blank">View on GitHub</a>
+                </div>
+                {% endfor %}
             </div>
         </section>
     </main>

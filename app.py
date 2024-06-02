@@ -5,14 +5,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/projects')
-def projects():
     projects = [
         {
             'name': 'Solar Paver Energy Monitoring App',
@@ -36,11 +28,7 @@ def projects():
             'image': 'project1.jpg'
         }
     ]
-    return render_template('projects.html', projects=projects)
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
+    return render_template('index.html', projects=projects)
 
 @app.route('/submit_contact', methods=['POST'])
 def submit_contact():
