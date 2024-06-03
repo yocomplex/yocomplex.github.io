@@ -179,19 +179,20 @@ section {
     background-color: #555;
 }
 
-/* Improves form layout in the Contact section */
 form {
     max-width: 600px; /* Restricts form width for better layout */
     margin: 0 auto; /* Centers the form horizontally */
     padding: 20px; /* Adds padding inside the form */
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     border-radius: 8px; /* Rounded corners */
+    box-sizing: border-box; /* Ensures padding does not affect width */
 }
 
 form div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
 }
 
 form label {
@@ -205,6 +206,7 @@ form input, form textarea {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1em;
+    box-sizing: border-box; /* Ensures padding does not affect width */
 }
 
 form textarea {
@@ -282,13 +284,13 @@ input[type='text'], input[type='email'], textarea {
 /* Contact Form Styling */
 .contact-form {
     background-color: #333;
-    padding: 30px; /* Increased padding for better spacing */
+    padding: 30px;
     border-radius: 5px;
-    width: 100%; /* Ensures form takes the full width of its container */
-    box-sizing: border-box; /* Includes padding in width calculation */
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers the form contents */
+    align-items: center;
 }
 
 /* Adjust the right side padding if it's uneven */
@@ -327,43 +329,70 @@ input[type='text'], input[type='email'], textarea {
     justify-content: space-around;
     padding: 50px;
     background-color: #1a1a1a; /* Dark background for the section */
-  }
+}
 
   .profile-photo img {
     width: 250px;
     height: 250px;
     border-radius: 50%;
     border: 5px solid #007bff; /* Blue border for the photo */
-  }
+}
 
   .about-content {
     width: 60%;
     color: white;
   }
 
-  .about-content h1 {
+.about-content h1 {
     color: #007bff; /* Blue color for the 'About Me' title */
     margin-bottom: 20px;
-  }
-  
-  .technology-icons img {
+}
+
+.technology-section {
+    margin-top: 20px;
+}
+
+.technology-icons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.technology-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100px;
+}
+
+.technology-item img {
     width: 50px;
     height: 50px;
-    margin-right: 10px;
-  }
+    margin-bottom: 5px;
+}
+
+.technology-item p {
+    margin: 0;
+    color: #ffffff;
+}
   
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
+/* Responsive adjustments */
+@media (max-width: 768px) {
     .about-section {
-      flex-direction: column;
-      text-align: center;
+        flex-direction: column;
+        text-align: center;
     }
-  
+
     .profile-photo {
-      margin-bottom: 20px;
+        margin-bottom: 20px;
     }
-  
+
     .about-content {
-      width: 100%;
+        width: 100%;
     }
-  }
+}

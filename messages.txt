@@ -6,3 +6,11 @@ Name: Joshua Zamora
 Email: joshuayanga1@hotmail.com
 Message: 111
 --------------------
+Name: Resume Joshua Zamora
+Email: joshuayanga1@hotmail.com
+Message: 111111
+--------------------
+Name: Resume Joshua Zamora
+Email: joshuayanga1@hotmail.com
+Message: hi
+--------------------

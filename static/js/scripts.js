@@ -17,21 +17,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formData = new FormData(this);
         const data = {
-            'entry.786412705': formData.get('name'),
-            'entry.1433627596': formData.get('email'),
-            'entry.1493723441': formData.get('message')
+            'name': formData.get('name'),
+            'email': formData.get('email'),
+            'message': formData.get('message')
         };
 
-        fetch('https://script.google.com/macros/s/AKfycbxBVuoN2gT-zqvtpVOI8VYT9cuF10FEKo_a0iiOsioIh0ojj4R3a_JzydtytM_RODAE/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbzgsgRAz7rvN4oq_rytg_1XRwFR5UuBXV3ZpZdsvKtP1Z_EwO_X5seFChLZEVTv4bJC/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams(data).toString()
         })
+        .then(response => response.json())
         .then(response => {
-            document.getElementById('responseMessage').innerText = 'Thank you for your message!';
-            this.reset();
+            document.getElementById('responseMessage').innerText = response.result === 'success' ? 'Thank you for your message!' : 'There was an error submitting your message. Please try again.';
+            if (response.result === 'success') {
+                this.reset();
+            }
         })
         .catch(error => {
             document.getElementById('responseMessage').innerText = 'There was an error submitting your message. Please try again.';
