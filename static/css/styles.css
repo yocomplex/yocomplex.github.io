@@ -179,14 +179,37 @@ section {
     background-color: #555;
 }
 
+/* Additional styles for improved consistency */
 form {
-    max-width: 600px; /* Restricts form width for better layout */
-    margin: 0 auto; /* Centers the form horizontally */
-    padding: 20px; /* Adds padding inside the form */
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    border-radius: 8px; /* Rounded corners */
-    box-sizing: border-box; /* Ensures padding does not affect width */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
+
+/* More specific styles for the contact form */
+#contact form input, #contact form textarea {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#contact form button:hover {
+    background-color: #0056b3;
+}
+
+#contact form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
 
 form div {
     display: flex;
@@ -206,11 +229,13 @@ form input, form textarea {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1em;
+    font-family: 'Roboto', sans-serif;
     box-sizing: border-box; /* Ensures padding does not affect width */
 }
 
 form textarea {
     resize: vertical;
+    height: 150px; /* Set a fixed height for the textarea */
 }
 
 form button {

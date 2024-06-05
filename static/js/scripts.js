@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = {
             'Name': formData.get('Name'),
             'Email': formData.get('Email'),
-            'Message': formData.get('Message')
+            'Message': formData.get('Message'),
+            'Timestamp': new Date().toISOString() // Adding timestamp
         };
 
         fetch('https://script.google.com/macros/s/AKfycbxDZkLLVTKSoOkijfqimjiJKbimOGEWB9yAjWchFKSyP8e2LfP3NLur0acW2SJit1b8pg/exec', {
