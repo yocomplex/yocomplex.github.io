@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'message': formData.get('message')
         };
 
-        fetch('https://script.google.com/macros/s/AKfycbxDZkLLVTKSoOkijfqimjiJKbimOGEWB9yAjWchFKSyP8e2LfP3NLur0acW2SJit1b8pg/exec', {
+        fetch('https://script.google.com/macros/library/d/1_7diGr0vcugFZs7om8a6nk4PLB6c7do4-C3WhaeXeEgt58MWhzFkqcoa/1', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
