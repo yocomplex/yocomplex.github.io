@@ -14,3 +14,7 @@ Name: Resume Joshua Zamora
 Email: joshuayanga1@hotmail.com
 Message: hi
 --------------------
+Name: None
+Email: None
+Message: None
+--------------------

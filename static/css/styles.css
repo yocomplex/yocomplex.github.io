@@ -8,9 +8,9 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin: 0;
     background: #0e2433;
     color: #ffffff;
+    overflow-x: hidden;
 }
 
 nav {
@@ -47,15 +47,7 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-/* Universal Styles */
-.section {
-    padding: 100px 20px; /* Adds top and bottom padding for each section */
-    width: 100%; /* Ensures each section uses full width */
-    box-sizing: border-box; /* Includes padding in the width calculation */
-}
-
-/* Specific Styles */
-.hero {
+.hero-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,20 +56,23 @@ nav ul li a:hover {
     text-align: center;
     background: #0e2433;
     color: #ffffff;
+    padding: 100px 20px;
+    box-sizing: border-box;
 }
 
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
+#parallax {
+    background: url('static/img/parallax.png') no-repeat fixed center center/cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .hero-content h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.5em; /* Adjusted for spacing */
+    font-size: 2.5em; /* Match to About Me header */
+    margin-bottom: 1em; /* Adjust margin for spacing */
 }
 
 .hero-content h1 span {
@@ -90,9 +85,17 @@ nav ul li a:hover {
     color: #007bff;
 }
 
-.hero-content a {
+.hero-content .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Vertical spacing between buttons */
+    margin-top: 20px; /* Vertical spacing between typewriter effect and buttons */
+}
+
+.hero-content a,
+.hero-content button {
     display: inline-block;
-    margin-top: 20px;
     padding: 10px 20px;
     background: #007bff;
     color: #ffffff;
@@ -101,17 +104,21 @@ nav ul li a:hover {
     cursor: pointer;
     transition: background 0.3s;
     border-radius: 5px;
+    border: none;
+    text-align: center;
+    width: 200px; /* Make all buttons the same width */
 }
 
-.hero-content a:hover {
+.hero-content a:hover,
+.hero-content button:hover {
     background: #0056b3;
 }
 
 section {
-    padding: 100px 0; /* Adds top and bottom padding for each section */
-    clear: both; /* Ensures no elements float across section boundaries */
-    width: 100%; /* Ensures the section takes full width */
-    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    padding: 100px 0;
+    clear: both;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .content {
@@ -125,10 +132,9 @@ section {
 }
 
 .projects-title {
-    margin-bottom: 30px; /* Adds more space between title and cards */
+    margin-bottom: 30px;
 }
 
-/* Projects Section with Hover Effect */
 .projects-container {
     display: flex;
     flex-wrap: wrap;
@@ -137,20 +143,27 @@ section {
 }
 
 .project-card {
-    background-color: #ffffff; /* Ensures the card has a white background */
+    background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 300px;
     margin: 20px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+    opacity: 1; /* Start hidden for animation */
 }
 
 .project-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    z-index: 20; /* Ensures the hovered card rises above others */
+    z-index: 20;
+}
+
+.project-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 .project-card h2 {
@@ -179,15 +192,62 @@ section {
     background-color: #555;
 }
 
-/* Additional styles for improved consistency */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    animation: slideIn 0.5s;
+}
+
+@keyframes slideIn {
+    from {transform: translateY(-50px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* More specific styles for the contact form */
-#contact form input, #contact form textarea {
+#contactForm input, #contactForm textarea {
     background-color: #f7f7f7;
     border: 1px solid #ccc;
     padding: 10px;
@@ -195,11 +255,11 @@ form {
     font-family: 'Roboto', sans-serif;
 }
 
-#contact form button:hover {
+#contactForm button:hover {
     background-color: #0056b3;
 }
 
-#contact form button {
+#contactForm button {
     background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
@@ -209,7 +269,6 @@ form {
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
 }
-
 
 form div {
     display: flex;
@@ -230,12 +289,12 @@ form input, form textarea {
     border-radius: 5px;
     font-size: 1em;
     font-family: 'Roboto', sans-serif;
-    box-sizing: border-box; /* Ensures padding does not affect width */
+    box-sizing: border-box;
 }
 
 form textarea {
     resize: vertical;
-    height: 150px; /* Set a fixed height for the textarea */
+    height: 150px;
 }
 
 form button {
@@ -275,77 +334,49 @@ footer {
     bottom: 0;
 }
 
-/* Styles to enhance readability and spacing */
+footer p {
+    font-size: 1em;
+    margin: 0;
+}
+
 h1 {
-    margin-bottom: 50px; /* Adds space below the section titles */
-    text-align: center; /* Centers the title text */
-    color: #ffffff; /* White color for text to stand out */
-    font-size: 2.5em; /* Larger text for headers */
+    margin-bottom: 50px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.5em;
 }
 
-/* Additional styling for input and textarea fields */
 input[type='text'], input[type='email'], textarea {
-    width: 100%; /* Ensures inputs use full width of the form */
+    width: 100%;
     padding: 10px;
-    margin-top: 8px; /* Adds space between inputs */
+    margin-top: 8px;
 }
 
-/* Style adjustments for better mobile viewing */
 @media (max-width: 768px) {
     section {
-        padding: 50px 20px; /* Smaller padding for smaller screens */
+        padding: 50px 20px;
     }
 
     h1 {
-        font-size: 2em; /* Smaller headers on mobile */
+        font-size: 2em;
     }
 
     form {
-        padding: 20px; /* Consistent padding */
+        padding: 20px;
     }
-}
 
-/* Contact Form Background Fix */
-/* Contact Form Styling */
-.contact-form {
-    background-color: #333;
-    padding: 30px;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .about-section {
+        flex-direction: column;
+        text-align: center;
+    }
 
-/* Adjust the right side padding if it's uneven */
-.contact-form * {
-    box-sizing: border-box; /* Fixes padding and border related width adjustments */
-}
+    .profile-photo {
+        margin-bottom: 20px;
+    }
 
-.contact-form input, .contact-form textarea {
-    width: 100%; /* Full width of the form minus padding */
-    padding: 10px;
-    margin-bottom: 20px; /* Adds more space between each input */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensures padding does not affect width */
-}
-
-.contact-form button {
-    width: 100%; /* Matches the input width */
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px; /* Adds space above the button */
-}
-
-.contact-form button:hover {
-    background-color: #0056b3;
+    .about-content {
+        width: 100%;
+    }
 }
 
 .about-section {
@@ -353,23 +384,23 @@ input[type='text'], input[type='email'], textarea {
     align-items: center;
     justify-content: space-around;
     padding: 50px;
-    background-color: #1a1a1a; /* Dark background for the section */
+    background-color: #1a1a1a;
 }
 
-  .profile-photo img {
+.profile-photo img {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    border: 5px solid #007bff; /* Blue border for the photo */
+    border: 5px solid #007bff;
 }
 
-  .about-content {
+.about-content {
     width: 60%;
     color: white;
-  }
+}
 
 .about-content h1 {
-    color: #007bff; /* Blue color for the 'About Me' title */
+    color: #007bff;
     margin-bottom: 20px;
 }
 
@@ -405,19 +436,63 @@ input[type='text'], input[type='email'], textarea {
     margin: 0;
     color: #ffffff;
 }
-  
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .about-section {
-        flex-direction: column;
-        text-align: center;
-    }
 
-    .profile-photo {
-        margin-bottom: 20px;
-    }
+/* Typewriter Effect */
+.typewriter h1, .typewriter h2 {
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
 
-    .about-content {
-        width: 100%;
-    }
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+}
+
+/* Adjustments for Modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    animation: slideIn 0.5s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+    color: #333;
+}
+
+form input, form textarea {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#responseMessage {
+    font-size: 1em;
+    text-align: center;
+    margin-top: 10px;
 }
