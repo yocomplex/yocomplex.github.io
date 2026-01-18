@@ -18,3 +18,7 @@ Name: None
 Email: None
 Message: None
 --------------------
+Name: Test
+Email: test@hotmail.com
+Message: Hi, this is a test message!
+--------------------

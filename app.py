@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+import os
 
 app = Flask(__name__)
 
@@ -44,9 +45,10 @@ def submit_contact():
 
 @app.route('/view_messages')
 def view_messages():
+    if not os.path.exists('messages.txt'):
+        return '<pre>(no messages yet)</pre>'
     with open('messages.txt', 'r') as f:
-        messages = f.read()
-    return f'<pre>{messages}</pre>'
+        return f'<pre>{f.read()}</pre>'
 
 if __name__ == '__main__':
     app.run(debug=True)
