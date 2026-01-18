@@ -53,33 +53,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Google Sheets submission
-    // const scriptURL = 'https://script.google.com/macros/s/AKfycbxDZkLLVTKSoOkijfqimjiJKbimOGEWB9yAjWchFKSyP8e2LfP3NLur0acW2SJit1b8pg/exec';
-    const scriptURL = '/submit_contact';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyQKvqJvqiK2if0rr14C2dv9PifDSf5IC_2pOKStK8bUuQc8KwW-xOZk8sGPDvvPI2EUQ/exec';
     const form = document.forms['contactForm'];
 
     form.addEventListener('submit', e => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        fetch(scriptURL, { method: 'POST', body: new URLSearchParams(formData) })
-            .then(response => response.json())
-            .then(response => {
-            const responseMessage = document.getElementById('responseMessage');
-            if (response.status === 'success') {
-                responseMessage.innerText = response.message || 'Thank you for your message!';
-                responseMessage.style.color = 'green';
-                form.reset();
-                setTimeout(() => { modal.style.display = 'none'; }, 2000);
-            } else {
-                responseMessage.innerText = 'There was an error submitting your message. Please try again.';
-                responseMessage.style.color = 'red';
-            }
-            })
-            .catch(error => {
-                const responseMessage = document.getElementById('responseMessage');
-                responseMessage.innerText = 'There was an error submitting your message. Please try again.';
-                responseMessage.style.color = 'red';
-                console.error('Error:', error);
-            });
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    fetch(scriptURL, { method: 'POST', body: formData })
+        .then(res => res.json())
+        .then(data => {
+        const responseMessage = document.getElementById('responseMessage');
+        if (data.result === 'success') {
+            responseMessage.innerText = 'Thank you! Your message was sent.';
+            responseMessage.style.color = 'green';
+            form.reset();
+            setTimeout(() => { modal.style.display = 'none'; }, 2000);
+        } else {
+            responseMessage.innerText = 'There was an error submitting your message. Please try again.';
+            responseMessage.style.color = 'red';
+        }
+        })
+        .catch(err => {
+        const responseMessage = document.getElementById('responseMessage');
+        responseMessage.innerText = 'There was an error submitting your message. Please try again.';
+        responseMessage.style.color = 'red';
+        console.error(err);
+        });
     });
 
     // GSAP ScrollTrigger animations
