@@ -53,32 +53,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Google Sheets submission
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyQKvqJvqiK2if0rr14C2dv9PifDSf5IC_2pOKStK8bUuQc8KwW-xOZk8sGPDvvPI2EUQ/exec';
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwzNXfRo5TBkDQhtSCqvEuU22cshCkOzbog0qWh6U7lDZGCOEhkK8i-yQuLP5Pcg6xceA/exec";
     const form = document.forms['contactForm'];
-
-    form.addEventListener('submit', e => {
+    
+    form.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    const responseMessage = document.getElementById("responseMessage");
+    responseMessage.innerText = "Sending...";
+    responseMessage.style.color = "white";
+
     const formData = new FormData(form);
 
-    fetch(scriptURL, { method: 'POST', body: formData })
-        .then(res => res.json())
-        .then(data => {
-        const responseMessage = document.getElementById('responseMessage');
-        if (data.result === 'success') {
-            responseMessage.innerText = 'Thank you! Your message was sent.';
-            responseMessage.style.color = 'green';
+    fetch(scriptURL, { method: "POST", body: formData })
+        .then((res) => res.json())
+        .then((data) => {
+        if (data.result === "success") {
+            responseMessage.innerText = "Thank you! Your message was sent.";
+            responseMessage.style.color = "lime";
             form.reset();
-            setTimeout(() => { modal.style.display = 'none'; }, 2000);
         } else {
-            responseMessage.innerText = 'There was an error submitting your message. Please try again.';
-            responseMessage.style.color = 'red';
+            responseMessage.innerText =
+            "There was an error submitting your message. Please try again.";
+            responseMessage.style.color = "red";
+            console.error("Apps Script error:", data);
         }
         })
-        .catch(err => {
-        const responseMessage = document.getElementById('responseMessage');
-        responseMessage.innerText = 'There was an error submitting your message. Please try again.';
-        responseMessage.style.color = 'red';
-        console.error(err);
+        .catch((err) => {
+        responseMessage.innerText =
+            "There was an error submitting your message. Please try again.";
+        responseMessage.style.color = "red";
+        console.error("Network/Fetch error:", err);
         });
     });
 
